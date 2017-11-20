@@ -33,6 +33,8 @@ module.exports = {
         NODE_ENV: JSON.stringify('production')
       }
     }),
-    new DelWebpackPlugin()
+    new DelWebpackPlugin({
+      info: true
+    })
   ]
 }
