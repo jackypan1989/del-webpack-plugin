@@ -1,5 +1,6 @@
 const path = require('path')
 const del = require('del')
+const chalk = require('chalk')
 
 class DelWebpackPlugin {
   constructor (options = { info: true }) {
@@ -22,12 +23,15 @@ class DelWebpackPlugin {
         ignore: ignorePatterns
       }).then(paths => {
         if (this.options.info) {
+          console.log()
           console.log(`===== Del Webpack Plugin ===`)
-          console.log(`Compiled files:`)
+          console.log(`${chalk.green('Compiled files:')}`)
           assetNames.map(name => console.log(name))
-          console.log(`Deleted files:`)
+          console.log()
+          console.log(`${chalk.red('Deleted files:')}`)
           paths.map(name => console.log(path.basename(name)))
           console.log(`============================`)
+          console.log()
         }
       })
     })

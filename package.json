@@ -41,6 +41,7 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-0": "^6.24.1",
+    "chalk": "^2.3.0",
     "del": "^3.0.0",
     "lint-staged": "^5.0.0",
     "prettier-standard": "^7.0.3",
