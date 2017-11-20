@@ -1,0 +1,49 @@
+{
+  "name": "del-webpack-plugin",
+  "version": "1.0.0",
+  "description": "del plugin for webpack",
+  "main": "dist/index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "lint-staged",
+    "precommit": "yarn lint",
+    "build": "NODE_ENV=production babel src -d dist",
+    "example": "NODE_ENV=production webpack --config webpack.example.js --progress"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier-standard",
+      "git add"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jackypan1989/del-webpack-plugin.git"
+  },
+  "keywords": [
+    "webpack",
+    "del",
+    "clean",
+    "file"
+  ],
+  "author": "jackypan1989@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jackypan1989/del-webpack-plugin/issues"
+  },
+  "homepage": "https://github.com/jackypan1989/del-webpack-plugin#readme",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "del": "^3.0.0",
+    "lint-staged": "^5.0.0",
+    "prettier-standard": "^7.0.3",
+    "webpack": "^3.8.1"
+  }
+}

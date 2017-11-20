@@ -1,1 +1,1 @@
-# rimraf-webpack-plugin
+# del-webpack-plugin
