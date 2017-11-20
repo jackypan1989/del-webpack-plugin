@@ -19,7 +19,8 @@ module.exports = {
   },
   devtool: false,
   entry: {
-    app: path.join(__dirname, 'example/App')
+    app: path.join(__dirname, 'example/App'),
+    app2: path.join(__dirname, 'example/App2')
   },
   output: {
     path: path.join(__dirname, 'example/dist'),
