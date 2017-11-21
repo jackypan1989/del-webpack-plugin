@@ -34,7 +34,8 @@ module.exports = {
       }
     }),
     new DelWebpackPlugin({
-      info: true
+      info: true,
+      exclude: ['test.js']
     })
   ]
 }

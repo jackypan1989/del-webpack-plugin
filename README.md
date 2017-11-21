@@ -20,14 +20,15 @@ npm install -D del-webpack-plugin
 yarn add -D del-webpack-plugin
 ```
 
-## usage (or see webpack.example.js)
+## usage (in your webpack config)
 ```
 const DelWebpackPlugin = require('clean-webpack-plugin')
 
 {
   plugins: [
     new DelWebpackPlugin({
-      info: true
+      info: true,
+      exclude: ['test.js']
     })
   ]
 }

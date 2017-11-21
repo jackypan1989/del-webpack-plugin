@@ -25,6 +25,8 @@
   },
   "keywords": [
     "webpack",
+    "webpack-plugin",
+    "remove",
     "del",
     "clean",
     "file"
