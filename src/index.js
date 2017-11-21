@@ -11,6 +11,15 @@ class DelWebpackPlugin {
     const outputPath = compiler.options.output.path
 
     compiler.plugin('done', stats => {
+      // check all modules work
+      if (stats.hasErrors()) {
+        console.log()
+        console.log(
+          `${chalk.red(`Del Webpack Plugin stopped according to module failed.`)}`
+        )
+        return
+      }
+
       // gather info from compiled files
       const assetNames = stats.toJson().assets.map(asset => asset.name)
 
@@ -25,7 +34,7 @@ class DelWebpackPlugin {
         if (this.options.info) {
           console.log()
           console.log(`===== Del Webpack Plugin ===`)
-          console.log(`${chalk.green('Compiled files:')}`)
+          console.log(`${chalk.green('Added files:')}`)
           assetNames.map(name => console.log(name))
           console.log()
           console.log(`${chalk.red('Deleted files:')}`)
