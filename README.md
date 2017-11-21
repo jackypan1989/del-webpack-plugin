@@ -35,3 +35,17 @@ const DelWebpackPlugin = require('clean-webpack-plugin')
   ]
 }
 ```
+
+## options
+
+### options.info
+console.log added files and deleted files
+- type: Boolean
+- default: true
+
+### options.exclude
+a file list you dont wanna delete
+- type: [String]
+- default: []
+- example: ['test.js', 'test/*.js']
+
