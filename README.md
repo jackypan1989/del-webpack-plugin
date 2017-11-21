@@ -1,5 +1,7 @@
 # del-webpack-plugin
-remove/clean old files after webpack building
+remove/clean old files after webpack build
+
+![](https://i.imgur.com/t65OjUv.png)
 
 ## feature
 - [x] only delete after webpack compile
