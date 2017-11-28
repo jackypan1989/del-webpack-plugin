@@ -1,7 +1,6 @@
-# del-webpack-plugin
-remove/clean old files after webpack build
-
-![](https://i.imgur.com/t65OjUv.png)
+# Del-webpack-plugin
+This webpack plugin clean old files after build.  
+Just as the well-known plugin [clean-webpack-plugin](https://github.com/johnagan/clean-webpack-plugin), and more than it.
 
 ## feature
 - [x] only delete after webpack compile
@@ -12,6 +11,8 @@ remove/clean old files after webpack build
 - [x] colorful log with chalk
 - [x] example with webpack
 - [x] support cross platform
+
+![](https://i.imgur.com/t65OjUv.png)
 
 ## install
 ```
@@ -49,3 +50,4 @@ a file list you dont wanna delete
 - default: []
 - example: ['test.js', 'test/*.js']
 
+Welcome any issues and PRs submit :D
