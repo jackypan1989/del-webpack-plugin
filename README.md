@@ -25,7 +25,7 @@ yarn add -D del-webpack-plugin
 
 ## usage (in your webpack config)
 ```
-const DelWebpackPlugin = require('clean-webpack-plugin')
+const DelWebpackPlugin = require('del-webpack-plugin')
 
 {
   plugins: [
@@ -49,5 +49,6 @@ a file list you dont wanna delete
 - type: [String]
 - default: []
 - example: ['test.js', 'test/*.js']
+
 
 Welcome any issues and PRs submit :D
