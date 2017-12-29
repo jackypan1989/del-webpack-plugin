@@ -21,10 +21,15 @@ class DelWebpackPlugin {
       // gather info from compiled files
       const assetNames = stats.toJson().assets.map(asset => asset.name);
 
-      // delete files
-      const ignorePatterns = [outputPath, ...this.options.exclude.map(name => path.join(outputPath, name)), ...assetNames.map(name => path.join(outputPath, name))];
-      del(path.join(outputPath, '**'), {
-        ignore: ignorePatterns
+      // include files, default is all files (**) under working folder
+      const includePatterns = this.options.include ? this.options.include.map(name => path.join(outputPath, name)) : path.join(outputPath, '**');
+
+      // exclude files
+      const excludePatterns = [outputPath, ...this.options.exclude.map(name => path.join(outputPath, name)), ...assetNames.map(name => path.join(outputPath, name))];
+
+      // run delete 
+      del(includePatterns, {
+        ignore: excludePatterns
       }).then(paths => {
         if (this.options.info) {
           console.log();

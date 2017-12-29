@@ -35,6 +35,7 @@ module.exports = {
     }),
     new DelWebpackPlugin({
       info: true,
+      include: ['trash'],
       exclude: ['test.js']
     })
   ]
