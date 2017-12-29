@@ -44,6 +44,13 @@ console.log added files and deleted files
 - type: Boolean
 - default: true
 
+### options.include
+a file list you wanna delete
+it will delete all files by default
+- type: [String]
+- default: ['**']
+- example: ['trash.js', 'trash/*.js']
+
 ### options.exclude
 a file list you dont wanna delete
 - type: [String]
