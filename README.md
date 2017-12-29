@@ -6,7 +6,7 @@ Just as the well-known plugin [clean-webpack-plugin](https://github.com/johnagan
 - [x] only delete after webpack compile
 - [x] skip plugin if compile error
 - [x] multiple entry / path support
-- [x] exclude files support
+- [x] include / exclude files support
 - [x] verbose / mute info support
 - [x] colorful log with chalk
 - [x] example with webpack
