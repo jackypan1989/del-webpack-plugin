@@ -3,7 +3,7 @@ const del = require('del');
 const chalk = require('chalk');
 
 class DelWebpackPlugin {
-  constructor(options = { info: true, exclude: [] }) {
+  constructor(options = { info: true, exclude: [], include: ['**'] }) {
     this.options = options;
   }
 
@@ -22,7 +22,7 @@ class DelWebpackPlugin {
       const assetNames = stats.toJson().assets.map(asset => asset.name);
 
       // include files, default is all files (**) under working folder
-      const includePatterns = this.options.include ? this.options.include.map(name => path.join(outputPath, name)) : path.join(outputPath, '**');
+      const includePatterns = this.options.include.map(name => path.join(outputPath, name));
 
       // exclude files
       const excludePatterns = [outputPath, ...this.options.exclude.map(name => path.join(outputPath, name)), ...assetNames.map(name => path.join(outputPath, name))];

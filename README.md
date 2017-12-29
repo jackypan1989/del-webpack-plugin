@@ -25,7 +25,7 @@ yarn add -D del-webpack-plugin
 
 ## usage (in your webpack config)
 ```
-const DelWebpackPlugin = require('clean-webpack-plugin')
+const DelWebpackPlugin = require('del-webpack-plugin')
 
 {
   plugins: [
