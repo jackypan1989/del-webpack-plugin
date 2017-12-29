@@ -57,4 +57,5 @@ a file list you dont wanna delete
 - default: []
 - example: ['test.js', 'test/*.js']
 
+
 Welcome any issues and PRs submit :D
