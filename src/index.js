@@ -3,8 +3,13 @@ const del = require('del')
 const chalk = require('chalk')
 
 class DelWebpackPlugin {
-  constructor (options = { info: true, exclude: [], include: ['**'] }) {
-    this.options = options
+  constructor (options) {
+    this.options = {
+      info: true, 
+      exclude: [], 
+      include: ['**'],
+      ...options
+    }
   }
 
   apply (compiler) {
