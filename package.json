@@ -1,6 +1,6 @@
 {
   "name": "del-webpack-plugin",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "del plugin for webpack",
   "main": "dist/index.js",
   "directories": {
@@ -38,14 +38,16 @@
   },
   "homepage": "https://github.com/jackypan1989/del-webpack-plugin#readme",
   "dependencies": {
+    "chalk": "^2.3.0",
+    "del": "^3.0.0"
+  },
+  "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-0": "^6.24.1",
-    "chalk": "^2.3.0",
     "cross-env": "^5.1.1",
-    "del": "^3.0.0",
     "lint-staged": "^5.0.0",
     "prettier-standard": "^7.0.3",
     "webpack": "^3.8.1"
