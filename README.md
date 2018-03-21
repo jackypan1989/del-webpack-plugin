@@ -46,10 +46,12 @@ console.log added files and deleted files
 
 ### options.include
 a file list you wanna delete
-it will delete all files by default
+it will delete all files and folders by default
 - type: [String]
 - default: ['**']
 - example: ['trash.js', 'trash/*.js']
+
+// only files not folders use ['**.*']
 
 ### options.exclude
 a file list you dont wanna delete
