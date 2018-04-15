@@ -57,7 +57,7 @@ class DelWebpackPlugin {
     }
 
     if (compiler.hooks) {
-      compiler.hooks.done.tapAsync('del-webpack-plugin', callback)
+      compiler.hooks.done.tap('del-webpack-plugin', callback)
     } else {
       compiler.plugin('done', callback)
     }
