@@ -3,7 +3,7 @@ This webpack plugin clean old files after build.
 Just as the well-known plugin [clean-webpack-plugin](https://github.com/johnagan/clean-webpack-plugin), and more than it.
 
 ## changelog
-2018-04-25 (1.0.5): upgade to webpack v4
+2018-04-25 (1.0.5): upgrade to webpack v4
 
 ## feature
 - [x] only delete after webpack compile
