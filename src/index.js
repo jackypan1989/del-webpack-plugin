@@ -15,7 +15,7 @@ class DelWebpackPlugin {
   apply (compiler) {
     const outputPath = compiler.options.output.path
 
-    compiler.plugin('done', stats => {
+    const callback = stats => {
       // check all modules work
       if (stats.hasErrors()) {
         console.log()
@@ -54,7 +54,13 @@ class DelWebpackPlugin {
           console.log()
         }
       })
-    })
+    }
+
+    if (compiler.hooks) {
+      compiler.hooks.done.tap('del-webpack-plugin', callback)
+    } else {
+      compiler.plugin('done', callback)
+    }
   }
 }
 
