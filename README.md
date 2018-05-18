@@ -1,5 +1,8 @@
-# Del-webpack-plugin
-This webpack plugin clean old files after build.  
+![](https://img.shields.io/npm/v/del-webpack-plugin.svg)
+![](https://img.shields.io/npm/dt/del-webpack-plugin.svg)
+![](https://img.shields.io/github/license/jackypan1989/del-webpack-plugin.svg)
+# Del-webpack-plugin 
+This webpack plugin clean old files after build
 Just as the well-known plugin [clean-webpack-plugin](https://github.com/johnagan/clean-webpack-plugin), and more than it.
 
 ## changelog
