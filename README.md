@@ -1,5 +1,5 @@
-![](https://img.shields.io/npm/v/del-webpack-plugin.svg)
-![](https://img.shields.io/npm/dt/del-webpack-plugin.svg)
+![https://www.npmjs.com/package/del-webpack-plugin](https://img.shields.io/npm/v/del-webpack-plugin.svg)
+![https://www.npmjs.com/package/del-webpack-plugin](https://img.shields.io/npm/dt/del-webpack-plugin.svg)
 ![](https://img.shields.io/github/license/jackypan1989/del-webpack-plugin.svg)
 # Del-webpack-plugin 
 This webpack plugin clean old files after build
