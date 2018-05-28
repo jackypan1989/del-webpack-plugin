@@ -30,7 +30,7 @@ var DelWebpackPlugin = function () {
 
       var outputPath = compiler.options.output.path;
 
-      compiler.plugin('done', function (stats) {
+      var callback = function callback(stats) {
         // check all modules work
         if (stats.hasErrors()) {
           console.log();
@@ -75,7 +75,13 @@ var DelWebpackPlugin = function () {
             console.log();
           }
         });
-      });
+      };
+
+      if (compiler.hooks) {
+        compiler.hooks.done.tap('del-webpack-plugin', callback);
+      } else {
+        compiler.plugin('done', callback);
+      }
     }
   }]);
 

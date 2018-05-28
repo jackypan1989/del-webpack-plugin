@@ -7,6 +7,7 @@ Just as the well-known plugin [clean-webpack-plugin](https://github.com/johnagan
 
 ## changelog
 2018-04-25 (1.0.5): upgrade to webpack v4
+2018-05-28 (1.0.6): fix and update lib
 
 ## feature
 - [x] only delete after webpack compile
