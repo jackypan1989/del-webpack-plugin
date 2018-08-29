@@ -12,12 +12,16 @@ var path = require('path');
 var del = require('del');
 var chalk = require('chalk');
 
+var _require = require('ramda'),
+    map = _require.map;
+
 var DelWebpackPlugin = function () {
   function DelWebpackPlugin(options) {
     _classCallCheck(this, DelWebpackPlugin);
 
     this.options = _extends({
       info: true,
+      keepGeneratedAssets: true,
       exclude: [],
       include: ['**']
     }, options);
@@ -39,25 +43,31 @@ var DelWebpackPlugin = function () {
         }
 
         // gather info from compiled files
-        var assetNames = stats.toJson().assets.map(function (asset) {
+        var assetNames = map(function (asset) {
           return asset.name;
-        });
+        }, stats.toJson().assets);
+
+        // generated files by webpack, default is exclude all generated files
+        var assetPatterns = _this.options.keepGeneratedAssets ? map(function (name) {
+          return path.join(outputPath, name);
+        }, assetNames) : [];
 
         // include files, default is all files (**) under working folder
-        var includePatterns = _this.options.include.map(function (name) {
+        var includePatterns = map(function (name) {
           return path.join(outputPath, name);
-        });
+        }, _this.options.include);
 
         // exclude files
-        var excludePatterns = [outputPath].concat(_toConsumableArray(_this.options.exclude.map(function (name) {
+        var excludePatterns = map(function (name) {
           return path.join(outputPath, name);
-        })), _toConsumableArray(assetNames.map(function (name) {
-          return path.join(outputPath, name);
-        })));
+        }, _this.options.exclude);
+
+        // all ignore files
+        var allExcludePatterns = [outputPath].concat(_toConsumableArray(excludePatterns), _toConsumableArray(assetPatterns));
 
         // run delete 
         del(includePatterns, {
-          ignore: excludePatterns
+          ignore: allExcludePatterns
         }).then(function (paths) {
           if (_this.options.info) {
             console.log();

@@ -8,6 +8,7 @@ Just as the well-known plugin [clean-webpack-plugin](https://github.com/johnagan
 ## changelog
 2018-04-25 (1.0.5): upgrade to webpack v4  
 2018-05-28 (1.0.6): fix and update lib
+2018-08-30 (1.1.0): add keepGeneratedAssets option
 
 ## feature
 - [x] only delete after webpack compile
@@ -37,8 +38,10 @@ const DelWebpackPlugin = require('del-webpack-plugin')
 {
   plugins: [
     new DelWebpackPlugin({
+      include: ['**'],
+      exclude: ['test.js'],
       info: true,
-      exclude: ['test.js']
+      keepGeneratedAssets: true
     })
   ]
 }
@@ -48,6 +51,11 @@ const DelWebpackPlugin = require('del-webpack-plugin')
 
 ### options.info
 console.log added files and deleted files
+- type: Boolean
+- default: true
+
+### options.keepGeneratedAssets
+keep webpack generated files
 - type: Boolean
 - default: true
 
@@ -65,6 +73,5 @@ a file list you dont wanna delete
 - type: [String]
 - default: []
 - example: ['test.js', 'test/*.js']
-
 
 Welcome any issues and PRs submit :D

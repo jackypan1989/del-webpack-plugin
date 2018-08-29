@@ -34,9 +34,10 @@ module.exports = {
       }
     }),
     new DelWebpackPlugin({
-      info: true,
       include: ['**'],
-      exclude: ['test']
+      exclude: ['test.js'],
+      info: true,
+      keepGeneratedAssets: true
     })
   ]
 }

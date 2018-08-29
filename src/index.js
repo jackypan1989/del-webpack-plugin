@@ -1,11 +1,13 @@
 const path = require('path')
 const del = require('del')
 const chalk = require('chalk')
+const { map } = require('ramda')
 
 class DelWebpackPlugin {
   constructor (options) {
     this.options = {
       info: true, 
+      keepGeneratedAssets: true,
       exclude: [], 
       include: ['**'],
       ...options
@@ -26,21 +28,38 @@ class DelWebpackPlugin {
       }
 
       // gather info from compiled files
-      const assetNames = stats.toJson().assets.map(asset => asset.name)
+      const assetNames = map(
+        asset => asset.name, 
+        stats.toJson().assets
+      )
+
+      // generated files by webpack, default is exclude all generated files
+      const assetPatterns = this.options.keepGeneratedAssets
+        ? map(name => path.join(outputPath, name), assetNames)
+        : []
 
       // include files, default is all files (**) under working folder
-      const includePatterns = this.options.include.map(name => path.join(outputPath, name))
+      const includePatterns = map(
+        name => path.join(outputPath, name),
+        this.options.include
+      )
 
       // exclude files
-      const excludePatterns = [
+      const excludePatterns = map(
+        name => path.join(outputPath, name),
+        this.options.exclude
+      )
+
+      // all ignore files
+      const allExcludePatterns = [
         outputPath,
-        ...this.options.exclude.map(name => path.join(outputPath, name)),
-        ...assetNames.map(name => path.join(outputPath, name))
+        ...excludePatterns,
+        ...assetPatterns
       ]
   
       // run delete 
       del(includePatterns, {
-        ignore: excludePatterns
+        ignore: allExcludePatterns
       }).then(paths => {
         if (this.options.info) {
           console.log()
