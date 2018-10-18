@@ -10,6 +10,7 @@ class DelWebpackPlugin {
       keepGeneratedAssets: true,
       exclude: [], 
       include: ['**'],
+      allowExternal: false,
       ...options
     }
   }
@@ -26,6 +27,9 @@ class DelWebpackPlugin {
         )
         return
       }
+  
+      // from clean-webpack-plugin :  allow the plugin to clean folders outside of the webpack root. 
+      const allowExternal = this.options.allowExternal;
 
       // gather info from compiled files
       const assetNames = map(
@@ -59,6 +63,7 @@ class DelWebpackPlugin {
   
       // run delete 
       del(includePatterns, {
+        force: allowExternal,
         ignore: allExcludePatterns
       }).then(paths => {
         if (this.options.info) {

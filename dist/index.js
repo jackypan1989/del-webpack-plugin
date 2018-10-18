@@ -23,7 +23,8 @@ var DelWebpackPlugin = function () {
       info: true,
       keepGeneratedAssets: true,
       exclude: [],
-      include: ['**']
+      include: ['**'],
+      allowExternal: false
     }, options);
   }
 
@@ -41,6 +42,9 @@ var DelWebpackPlugin = function () {
           console.log('' + chalk.red('Del Webpack Plugin stopped according to module failed.'));
           return;
         }
+
+        // from clean-webpack-plugin :  allow the plugin to clean folders outside of the webpack root. 
+        var allowExternal = _this.options.allowExternal;
 
         // gather info from compiled files
         var assetNames = map(function (asset) {
@@ -67,6 +71,7 @@ var DelWebpackPlugin = function () {
 
         // run delete 
         del(includePatterns, {
+          force: allowExternal,
           ignore: allExcludePatterns
         }).then(function (paths) {
           if (_this.options.info) {
