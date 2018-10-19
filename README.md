@@ -9,6 +9,7 @@ Just as the well-known plugin [clean-webpack-plugin](https://github.com/johnagan
 2018-04-25 (1.0.5): upgrade to webpack v4  
 2018-05-28 (1.0.6): fix and update lib  
 2018-08-30 (1.1.0): add keepGeneratedAssets option
+2018-10-18 (1.2.0): add allowExternal
 
 ## feature
 - [x] only delete after webpack compile
@@ -41,7 +42,8 @@ const DelWebpackPlugin = require('del-webpack-plugin')
       include: ['**'],
       exclude: ['test.js'],
       info: true,
-      keepGeneratedAssets: true
+      keepGeneratedAssets: true,
+      allowExternal: false
     })
   ]
 }
@@ -58,6 +60,11 @@ console.log added files and deleted files
 keep webpack generated files
 - type: Boolean
 - default: true
+
+### options.allowExternal
+allows del-webpack-plugin to delete files outside of webpack root folder
+- type: Boolean
+- default: false
 
 ### options.include
 a file list you wanna delete
