@@ -1,6 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
-const DelWebpackPlugin = require('./src/index')
+const DelWebpackPlugin = require('../src/index')
 
 module.exports = {
   resolve: {

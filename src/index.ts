@@ -1,21 +1,35 @@
-const path = require('path')
-const del = require('del')
-const chalk = require('chalk')
-const { map } = require('ramda')
+import { Compiler } from 'webpack'
+import chalk from 'chalk'
+import del from 'del'
+import path from 'path'
+
+interface DelWebpackPluginOptions {
+  info: boolean,
+  keepGeneratedAssets: boolean,
+  exclude: string[],
+  include: string[],
+  allowExternal: boolean,
+}
 
 class DelWebpackPlugin {
-  constructor (options) {
-    this.options = {
-      info: true, 
+  options: DelWebpackPluginOptions
+
+  constructor(options: DelWebpackPluginOptions) {
+    const defaultOptions: DelWebpackPluginOptions = {
+      info: true,
       keepGeneratedAssets: true,
-      exclude: [], 
+      exclude: [],
       include: ['**'],
       allowExternal: false,
+    }
+    
+    this.options = {
+      ...defaultOptions,
       ...options
     }
   }
 
-  apply (compiler) {
+  apply(compiler: Compiler) {
     const outputPath = compiler.options.output.path
 
     const callback = stats => {
@@ -23,35 +37,30 @@ class DelWebpackPlugin {
       if (stats.hasErrors()) {
         console.log()
         console.log(
-          `${chalk.red(`Del Webpack Plugin stopped according to module failed.`)}`
+          `${chalk.red('Del Webpack Plugin stopped according to module failed.')}`
         )
         return
       }
-  
+
       // from clean-webpack-plugin :  allow the plugin to clean folders outside of the webpack root. 
-      const allowExternal = this.options.allowExternal;
+      const allowExternal = this.options.allowExternal
 
       // gather info from compiled files
-      const assetNames = map(
-        asset => asset.name, 
-        stats.toJson().assets
-      )
+      const assetNames = stats.toJson().assets.map(asset => asset.name)
 
       // generated files by webpack, default is exclude all generated files
       const assetPatterns = this.options.keepGeneratedAssets
-        ? map(name => path.join(outputPath, name), assetNames)
+        ? assetNames.map(name => path.join(outputPath, name))
         : []
 
       // include files, default is all files (**) under working folder
-      const includePatterns = map(
+      const includePatterns = this.options.include.map(
         name => path.join(outputPath, name),
-        this.options.include
       )
 
       // exclude files
-      const excludePatterns = map(
+      const excludePatterns = this.options.exclude.map(
         name => path.join(outputPath, name),
-        this.options.exclude
       )
 
       // all ignore files
@@ -60,7 +69,7 @@ class DelWebpackPlugin {
         ...excludePatterns,
         ...assetPatterns
       ]
-  
+
       // run delete 
       del(includePatterns, {
         force: allowExternal,
@@ -68,23 +77,19 @@ class DelWebpackPlugin {
       }).then(paths => {
         if (this.options.info) {
           console.log()
-          console.log(`===== Del Webpack Plugin ===`)
+          console.log('===== Del Webpack Plugin ===')
           console.log(`${chalk.green('Added files:')}`)
           assetNames.map(name => console.log(name))
           console.log()
           console.log(`${chalk.red('Deleted files:')}`)
           paths.map(name => console.log(path.basename(name)))
-          console.log(`============================`)
+          console.log('============================')
           console.log()
         }
       })
     }
 
-    if (compiler.hooks) {
-      compiler.hooks.done.tap('del-webpack-plugin', callback)
-    } else {
-      compiler.plugin('done', callback)
-    }
+    compiler.hooks.done.tap('del-webpack-plugin', callback)
   }
 }
 
