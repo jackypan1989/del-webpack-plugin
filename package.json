@@ -1,19 +1,16 @@
 {
   "name": "del-webpack-plugin",
   "version": "2.0.0",
-  "description": "file clean plugin for webpack v5",
+  "description": "file clean plugin for webpack v4 up",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
-  "directories": {
-    "example": "example"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "lint-staged",
     "precommit": "yarn lint",
     "build": "rollup -c",
     "start": "rollup -c -w",
-    "example": "cross-env NODE_ENV=production webpack --config webpack.example.js --progress"
+    "example": "cd example && yarn build"
   },
   "lint-staged": {
     "*": [

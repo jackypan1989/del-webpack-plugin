@@ -13,20 +13,21 @@ var path2__default = /*#__PURE__*/_interopDefaultLegacy(path2);
 var __assign = Object.assign;
 class DelWebpackPlugin {
   constructor(options) {
-    this.options = __assign({
+    const defaultOptions = {
       info: true,
       keepGeneratedAssets: true,
       exclude: [],
       include: ["**"],
       allowExternal: false
-    }, options);
+    };
+    this.options = __assign(__assign({}, defaultOptions), options);
   }
   apply(compiler) {
     const outputPath = compiler.options.output.path;
     const callback = (stats) => {
       if (stats.hasErrors()) {
         console.log();
-        console.log(`${chalk2__default['default'].red(`Del Webpack Plugin stopped according to module failed.`)}`);
+        console.log(`${chalk2__default['default'].red("Del Webpack Plugin stopped according to module failed.")}`);
         return;
       }
       const allowExternal = this.options.allowExternal;
@@ -45,22 +46,18 @@ class DelWebpackPlugin {
       }).then((paths) => {
         if (this.options.info) {
           console.log();
-          console.log(`===== Del Webpack Plugin ===`);
+          console.log("===== Del Webpack Plugin ===");
           console.log(`${chalk2__default['default'].green("Added files:")}`);
           assetNames.map((name) => console.log(name));
           console.log();
           console.log(`${chalk2__default['default'].red("Deleted files:")}`);
           paths.map((name) => console.log(path2__default['default'].basename(name)));
-          console.log(`============================`);
+          console.log("============================");
           console.log();
         }
       });
     };
-    if (compiler.hooks) {
-      compiler.hooks.done.tap("del-webpack-plugin", callback);
-    } else {
-      compiler.plugin("done", callback);
-    }
+    compiler.hooks.done.tap("del-webpack-plugin", callback);
   }
 }
 module.exports = DelWebpackPlugin;

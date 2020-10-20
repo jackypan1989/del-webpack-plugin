@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+const DelWebpackPlugin = require('del-webpack-plugin')
 const path = require('path')
 const webpack = require('webpack')
-const DelWebpackPlugin = require('../src/index')
 
 module.exports = {
   resolve: {
-    modules: [path.join(__dirname, 'example'), 'node_modules']
+    modules: [path.join(__dirname, 'src'), 'node_modules']
   },
   module: {
     rules: [
@@ -19,11 +20,11 @@ module.exports = {
   },
   devtool: false,
   entry: {
-    app: path.join(__dirname, 'example/App'),
-    app2: path.join(__dirname, 'example/App2')
+    app: path.join(__dirname, 'src/App'),
+    app2: path.join(__dirname, 'src/App2')
   },
   output: {
-    path: path.join(__dirname, 'example/dist'),
+    path: path.join(__dirname, 'dist'),
     filename: '[name].[chunkhash].js',
     publicPath: '/'
   },
