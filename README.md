@@ -3,7 +3,7 @@
 ![](https://img.shields.io/github/license/jackypan1989/del-webpack-plugin.svg)
 # Del-webpack-plugin 
 
-**V2 was released, support webpack v5 !** 
+**v2 was released, support webpack v5 !** 
 
 A clean webpack plugin which can remove old files after bundling just as the well-known plugin [clean-webpack-plugin](https://github.com/johnagan/clean-webpack-plugin), and more than it.
 
@@ -15,6 +15,7 @@ A clean webpack plugin which can remove old files after bundling just as the wel
 2018-10-18 (1.2.0): add allowExternal option  
 
 ## feature
+- [x] webpack v5
 - [x] typed source code
 - [x] only delete after webpack compile
 - [x] skip plugin if compile error
@@ -25,7 +26,7 @@ A clean webpack plugin which can remove old files after bundling just as the wel
 - [x] example with webpack
 - [x] support cross platform
 
-![](https://i.imgur.com/t65OjUv.png)
+![](https://i.imgur.com/B1UWz2n.png)
 
 ## install
 ```shell
@@ -57,11 +58,11 @@ const DelWebpackPlugin = require('del-webpack-plugin')
 
 | field | desc | type | default |
 |---|---|---|---|
-| info  | console.log added files and deleted files | boolean  | true |
-| keepGeneratedAssets  | keep webpack generated files | boolean  | true |
-| allowExternal | allows del-webpack-plugin to delete files outside of webpack root folder | boolean | false |
-| include | a file list you wanna delete it will delete all files and folders by default, example: ['trash.js', 'trash/*.js'] | string[] | ['**'] |
-| exclude | a file list you dont wanna delete, example: ['test.js', 'test/*.js'] | string[] | [] |
+| info  | console.log added files and deleted files | ```boolean```  | ```true``` |
+| keepGeneratedAssets  | keep webpack generated files | ```boolean```  | ```true``` |
+| allowExternal | allows del-webpack-plugin to delete files outside of webpack root folder | ```boolean``` | ```false``` |
+| include | a file list you wanna delete it will delete all files and folders by default, example: ```['trash.js', 'trash/*.js']``` | ```string[]``` | ```['**']``` |
+| exclude | a file list you dont wanna delete, example: ```['test.js', 'test/*.js']``` | ```string[]``` | ```[]``` |
 
 ---
 
