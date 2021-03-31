@@ -8,6 +8,7 @@
 A clean webpack plugin which can remove old files after bundling just as the well-known plugin [clean-webpack-plugin](https://github.com/johnagan/clean-webpack-plugin), and more than it.
 
 ## changelog
+2021-04-01 (2.1.0): bump version, only use esbuild
 2020-10-20 (2.0.0): rewrite to ts, rollup, and support webpack v5  
 2018-04-25 (1.0.5): upgrade to webpack v4  
 2018-05-28 (1.0.6): fix and update lib  
